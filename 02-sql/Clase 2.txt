@@ -1,0 +1,74 @@
+SQL->Lenguaje de consultas utilizado para gestionar bases de datos RELACIONALES
+	Permite crear,modificar y eliminar datos de manera eficiente y segura
+
+CREATE:
+SQL SHELL ES DONDE TRABAJAREMOS
+(RECOMENDACION NO CAMBIAR EL PUERTO 5432?)
+EN EL PASSWORD HAY QUE AGREGAR SI O SI LA CONTRASEÑA QUE ELEGIERON AL CREAR LA CUENTA
+Al hacerlo bien se mostrara "postgres=#"
+
+COMANDOS:
+CREATE DATABASE prueba;
+
+CREATE TABLE table_name
+(
+ 	column_name1 data_type(size)
+);
+
+CREATE TABLE localidad(id integer PRIMARY KEY, nombre varchar(80));
+
+\dt -> PARA VER LA TABLA
+
+\c nombreDATABASE-> PARA CONECTARSE
+
+AGREGAR INFO A LA TABLA
+
+INSERT INTO nombretabla(columnastabla)
+VALUES(valorescolumnas)
+
+INSERT INTO localidad(id,nombre) VALUES(1,'Cordoba'),(2,'Buenos Aires'),(3,'Mendoza');
+
+SELECT * FROM localidad->EXTRAE TODAS LAS COLUMNAS DE localidad
+SELECT nombre FROM localidad->EXTRAE LA COLUMNA nombre DE localidad
+
+EXTENSION SQLTOOLS
+Hay que hacer la conexion como en el shell
+
+
+CONSTRAINTS->Reglas que nos ayudan a limitar que ingresan a la columna
+Ej NOT NULL->Evitar que ingresen datos vacios
+
+UNIR TABLAS CON REFERENCES-----------------------------------
+CREATE TABLE personas(id serial PRIMARY KEY, apellido varchar(255) NOT NULL,nombre varchar(255) UNIQUE, )
+
+CREATE TABLE empleados(
+id INTEGER PRIMARY KEY,
+nombre varchar(80) UNIQUE,
+sueldo INTEGER,
+id_departamento integer NOT NULL,
+FOREIGN KEY(id_departamento) REFERENCES departamento(id),
+id_puesto INTEGER NOT NULL,
+FOREIGN KEY(id_puesto) REFERENCES puestos(id)
+)
+
+
+CONEXIONES A EMPLEADOS
+DESPUES DE EL IGUAL "=" VA A LO QUE REFERENCIAS EN LA FOREIGN KEY DE LA TABLA
+
+SELECT empleados.nombre, puesto.nombre, departamentos.departamento FROM empleados
+JOIN puesto ON empleados.id_puesto = puesto.id
+JOIN departamentos ON empleados.id_departamentos = departamento.id
+JOIN localidad ON id_localidad = localidad.id
+
+WHERE -> Se utiliza para filtrar
+SELECT * FROM nombretabla WHERE condicion
+
+Traigo a los empleados que cumplan el WHERE  primero haciendo la union de la tabla de empleados con puesto y despues filtro lo que tiene
+LO DE LA UNION ES PORQUE ES UNA FOREIGN KEY
+
+SELECT empleados.nombre FROM empleados
+JOIN puesto ON empleados.id_puesto = puesto.id
+WHERE puesto.nombre = 'administracion'
+
+NORMALMENTE
+SELECT empleados.nombre FROM empleados WHERE sueldo>10000

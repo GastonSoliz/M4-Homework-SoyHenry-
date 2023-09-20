@@ -1,0 +1,39 @@
+Base de Datos
+	Conjunto organizado de informacion estructurada que se almacena y gestiona de manera sistematica
+
+	-Se compone por tablas de filas y columnas que representan datos/registros
+	-Existen relacionales(PostgreSQL)/No relacionales(MONGODB) y NoSQL(No tabla)
+	-Facilita la gestion de grandes cantidades de datos
+
+DBMS->Data Base Management System
+	-Datos: Informacion o hechos que se pueden medir,observar o recopilar. Se almacenan y uutilizan para tomar decisiones informadas y obtener informacion util 
+	-Base de datos: Coleccion ORGANIZADA de datos que se almacenan en una computadota y se pueden acceder y actualizar facilmente
+
+DBMS RELACIONALES: MYSQL POSTGRESQL,SQLITE,
+DBMS NO RELACIONALES(NO SQL): MONGODB, FIREBASE
+
+SQL->Structured Query Language
+	Lenguaje de consultas utilizado para administrar y consultar bases de datos relacionales
+	SQL permite a los usuarios crear,modificar y actualizadatos almacenados en una base de datos de manera eficiente
+
+Modelo Entidad Relacion
+	-Entidad: Representa una "cosa",objeto o concepto del mundo real con existencia independiente
+	-Atributos: Son las caracteristicas que definen o identifican a una entidad
+	-Relacion:
+
+Cardinalidad de 1-1, 1-N,N-N	
+ID->Primary Key (Atributo o conjunto de atributos que identifica univocamente a una fila)
+	Todas las tablas de una base de datos relacionales la tienen
+  ->Foreign Key(Mayormente 2)
+
+Al usar 2 tablas lo mejor seria usar una tabla intermediaria donde si tenes una de comments y otras de user
+La tabla intermediaria los juntaria 
+
+Si es algo que puedo guardar en mi base de datos es una entidad
+
+R&M
+Usuarios->EMAIL,PASSWORD
+Characters->ID,NOMBRE,STATUS,GENDER,ORIGIN,IMAGE
+Favorites
+
+	

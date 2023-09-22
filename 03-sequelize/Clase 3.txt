@@ -1,0 +1,75 @@
+ORM->Object Relational Mapping
+	Herramienta que se utiliza para mapear objetos de un lenguaje de programacion a tablas de una base de datos relacional
+	Esto permite que los desarrolladores interactuen en la base de datos utilizando codigo en lugar de consultas SQL directas 
+
+FLOW->Tablas->ORM->Objetos
+
+SEQUELIZE->ORM para Node que permite interactuar con bases de datos relacionales(PostgreSQL)
+
+INSTALACION
+npm install --save sequelize
+npm install --save pg(postgresql)
+npm install --save pg-hstore(postgresql)
+
+CONFIGURACION->db.js
+const {Sequlize} = require("sequelize");
+const UsersModel = require("./models/usersModel");
+const PostModel = require("./models/postsModel");
+const sequelize = new Sequelize('postgres://postgres:PASSWORD@localhost:5432/BASEDEDATOS')
+
+UsersModel(sequelize);
+PostModel(sequelize);
+
+const{User,Post} = sequelize.models;
+Usuario pertenece a muchos posts-> User.hasMany(Post)
+Un post pertenece a un solo usuario->Post.belongsTo(User)
+
+module.exports={...sequelize.models,
+sequelize};
+
+CREAR UN ARCHIVO .env QUE TENGA ASI:
+DB_USERNAME=
+DB_PASSWORD=
+DB_NAME=
+
+IMPORTAR
+const {sequelize} = require('./db.js');
+
+server.listen(3001,()=>{
+	sequelize.sync({force:true});
+})
+
+CREAR DATABASE
+carpeta models->archivo usersModel.js
+const {DataTypes} = require("sequelize");
+
+module.exports = (sequelize)=>{ sequelize.define("User",{
+	id:{
+		type:DataTypes.UUID,		DEFINE ESPERAR UN TIPO NUMERO
+		primaryKey:true,		
+		defaultValue:DataTypes.UUIDV4	ALGORITMO QUE GENERA UUIDSs
+	}
+	name:{
+		type:DataTypes.STRING,
+		allowNull:false;
+	}
+	email:{
+		type:DataTypes.STRING,
+		isEmail:true;
+		unique:true;
+	}
+	password:{
+		type:DataTypes.INTEGER,
+		len:[5,10]
+		defaultValue:123432;
+	}
+})
+}
+
+->archivo postsModel.js
+LO MISMO QUE USER PERO EN VEZ DE "User" SERA "Post"
+
+--------------
+RELATIONS
+
+
